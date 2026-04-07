@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 228 14% 11%;
+    --foreground: 220 20% 93%;
+
+    --card: 228 14% 14%;
+    --card-foreground: 220 20% 93%;
+
+    --popover: 228 14% 10%;
+    --popover-foreground: 220 20% 93%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 228 14% 17%;
+    --secondary-foreground: 220 20% 75%;
+
+    --muted: 228 14% 17%;
+    --muted-foreground: 220 12% 50%;
+
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 228 14% 20%;
+    --input: 228 14% 20%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.5rem;
+
+    /* CodeSync tokens */
+    --cs-activity-bar: 228 14% 8%;
+    --cs-sidebar: 228 14% 12%;
+    --cs-editor: 228 14% 11%;
+    --cs-terminal: 228 14% 7%;
+    --cs-titlebar: 228 14% 10%;
+    --cs-tab-active: 228 14% 11%;
+    --cs-tab-inactive: 228 14% 9%;
+    --cs-status-bar: 217 91% 30%;
+
+    --cs-glow: 217 91% 60%;
+    --cs-gradient-start: 217 91% 60%;
+    --cs-gradient-end: 263 70% 50%;
+
+    --sidebar-background: 228 14% 12%;
+    --sidebar-foreground: 220 20% 75%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 228 14% 17%;
+    --sidebar-accent-foreground: 220 20% 93%;
+    --sidebar-border: 228 14% 20%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  code, .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+}
+
+@layer components {
+  .cs-activity-bar { background-color: hsl(var(--cs-activity-bar)); }
+  .cs-sidebar { background-color: hsl(var(--cs-sidebar)); }
+  .cs-editor { background-color: hsl(var(--cs-editor)); }
+  .cs-terminal { background-color: hsl(var(--cs-terminal)); }
+  .cs-titlebar { background-color: hsl(var(--cs-titlebar)); }
+  .cs-status-bar { background-color: hsl(var(--cs-status-bar)); }
+
+  .cs-glow {
+    box-shadow: 0 0 60px -12px hsl(var(--cs-glow) / 0.15);
+  }
+  .cs-glow-sm {
+    box-shadow: 0 0 30px -8px hsl(var(--cs-glow) / 0.12);
+  }
+  .cs-gradient {
+    background: linear-gradient(135deg, hsl(var(--cs-gradient-start)), hsl(var(--cs-gradient-end)));
+  }
+  .cs-gradient-text {
+    background: linear-gradient(135deg, hsl(var(--cs-gradient-start)), hsl(var(--cs-gradient-end)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cs-card {
+    @apply bg-card border border-border rounded-xl;
+    backdrop-filter: blur(12px);
+    background: linear-gradient(
+      135deg,
+      hsl(var(--card)) 0%,
+      hsl(var(--card) / 0.8) 100%
+    );
+  }
+
+  .cs-input {
+    @apply w-full h-11 px-4 rounded-lg bg-secondary/50 border border-border text-foreground text-sm placeholder:text-muted-foreground transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring/30 focus:border-primary/40 focus:bg-secondary/70;
+  }
+
+  .cs-btn-primary {
+    @apply h-11 px-5 rounded-lg text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-200;
+    @apply bg-primary text-primary-foreground;
+    @apply hover:shadow-lg hover:shadow-primary/20 hover:brightness-110;
+    @apply active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .cs-btn-secondary {
+    @apply h-11 px-5 rounded-lg text-sm font-medium flex items-center justify-center gap-2 transition-all duration-200;
+    @apply bg-secondary text-secondary-foreground border border-border;
+    @apply hover:bg-muted hover:border-muted-foreground/20;
+    @apply active:scale-[0.97];
+  }
+
+  .cs-btn-ghost {
+    @apply h-9 px-3 rounded-lg text-sm font-medium flex items-center justify-center gap-2 transition-all duration-200;
+    @apply text-muted-foreground hover:text-foreground hover:bg-secondary;
+  }
+
+  .cs-badge {
+    @apply text-[10px] px-2 py-0.5 rounded-full font-medium;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar { width: 5px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 3px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--muted-foreground) / 0.3);
+  }
+}
+
+/* Animations */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); filter: blur(6px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-fade-in {
+  animation: fade-in 500ms ease-out both;
+}
+.animate-slide-in-right {
+  animation: slide-in-right 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
